@@ -1,0 +1,18 @@
+Algoritmo: Media aritmética de 3 números dados de
+
+media3(n1; n2 ; n3)
+
+realización
+    suma = n1+n2+n3
+    media = suma/3
+
+fin media3
+
+Algoritmo: Media ponderada de 3 números dados con sus coeficientes
+
+mediapond3(n1; n2 ; n3 ; c1 ; c2 ; c3)
+
+realización
+    media = (nixc1)+(n2xc2)+(n3xc3)
+
+fin mediapond3
