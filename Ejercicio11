@@ -1,0 +1,71 @@
+Algoritmo: Remuneración de las horas extra
+
+Algoritmo horas_extra
+    # Establece la remuneración de `horas_ext' adicionales para
+    # un salario mensual bruto `salario_mensual_bruto'.
+
+Entrada
+    salario_mensual_bruto : REAL
+        # Importe del salario mensual bruto
+    horas_ext : ENTERO
+        # Cantidad de horas extra del mes a remunerar
+
+precondición
+    salario_mensual_bruto > 0
+    horas_ext ≥ 0
+
+constante
+    CANTIDAD_HORAS_MAX_1 : ENTERO ← 8
+        # Umbral de cambio de precio de remuneración
+    PRECIO_1 : REAL ← 1,25
+        # Precio de remuneración de CANTIDAD_HORAS_MAX_1 primeras
+        # horas extra
+    PRECIO_2 : REAL ← 1,50
+        # Precio de remuneración de las otras horas extra
+
+variable
+    horas_ext_1 : ENTERO
+        # Cantidad de horas extra con PRECIO_1 %
+    horas_ext_2 : ENTERO
+        # Cantidad de horas extra con PRECIO_2 %
+    precio_hora : REAL
+        # Precio hora de la remuneración bruta de base
+
+realización
+    # Cálculo del precio_hora de la remuneración bruta de base
+    precio_hora ← precio_hora_bruto(salario_mensual_bruto)
+
+    # Cálculo de la cantidad de horas de cada categoría
+    horas_ext_1 ← inf(horas_ext, CANTIDAD_HORAS_MAX_1)
+    horas_ext_2 ← sup(horas_ext – CANTIDAD_HORAS_MAX_1, 0)
+
+    # Cálculo de la remuneración de las horas extra
+    Resultado ← precio_hora x (horas_ext_1 x PRECIO_1 +
+                               horas_ext_2 x PRECIO_2)
+
+postcondición
+...
+fin horas_extra
+
+Algoritmo: Precio hora bruto
+precio_hora_bruto(salario_mensual_bruto : REAL) : REAL
+    # El precio hora bruto correspondiente al `salario_mensual_bruto'.
+
+Precondición
+     salario_mensual_bruto > 0
+
+constante
+    CANTIDAD_SEMANAS : ENTERO ← 52
+        # Cantidad de semanas de trabajo
+    CANTIDAD_HORAS_SEMANA : ENTERO ← 35
+        # Cantidad legal de horas de trabajo semanales
+
+realización
+    # Cálculo del  precio_hora de la remuneración bruta de base
+    Resultado ← salario_mensual_bruto x 12 /
+               (REAL(CANTIDAD_HORAS_SEMANA) x REAL(CANTIDAD_SEMANAS))
+
+postcondición
+    Resultado = salario_mensual_bruto x 12,0 / REAL(35 x 52)
+
+fin precio_hora_bruto
